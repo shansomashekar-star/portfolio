@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { GraduationCap, MapPin, Calendar, Award } from "lucide-react";
+import { GraduationCap, MapPin, Calendar } from "lucide-react";
 
 interface Education {
   degree: string;
@@ -42,71 +42,52 @@ export function EducationSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section
-      id="education"
-      ref={ref}
-      className="py-32 bg-gradient-to-br from-background via-cyan-50/20 dark:via-cyan-950/10 to-background border-t border-border"
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+    <section id="education" ref={ref} className="py-24 sm:py-32 border-t border-border bg-cyan-50/30 dark:bg-cyan-950/10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.4 }}
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-semibold mb-6 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight mb-4">
             Education
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Academic foundation in data, analytics, and machine learning
+          <p className="text-muted-foreground text-lg">
+            Virginia Tech · Data & ML
           </p>
         </motion.div>
 
-        <div className="space-y-12">
+        <div className="space-y-8">
           {education.map((edu, index) => (
             <motion.div
               key={`${edu.degree}-${edu.period}`}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="border-b border-border pb-12 last:border-b-0"
+              transition={{ duration: 0.4, delay: index * 0.06 }}
+              className="flex items-start gap-4 border-b border-border pb-8 last:border-b-0 last:pb-0"
             >
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center flex-shrink-0">
-                  <GraduationCap className="h-6 w-6 text-white" />
+              <div className="w-10 h-10 rounded-lg bg-cyan-100 dark:bg-cyan-900/40 flex items-center justify-center flex-shrink-0">
+                <GraduationCap className="h-5 w-5 text-cyan-600 dark:text-cyan-400" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-lg font-semibold mb-1">{edu.degree}</h3>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground mb-2">
+                  <span className="font-medium text-foreground">{edu.institution}</span>
+                  <span className="flex items-center gap-1">
+                    <MapPin className="h-3.5 w-3.5" />
+                    {edu.location}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Calendar className="h-3.5 w-3.5" />
+                    {edu.period}
+                  </span>
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-semibold mb-2">{edu.degree}</h3>
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-muted-foreground mb-3">
-                    <span className="font-medium text-foreground">{edu.institution}</span>
-                    <span className="flex items-center gap-1">
-                      <MapPin className="h-4 w-4" />
-                      {edu.location}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Calendar className="h-4 w-4" />
-                      {edu.period}
-                    </span>
-                  </div>
-                  {edu.focus && (
-                    <p className="text-sm text-muted-foreground mb-3">
-                      <span className="font-medium text-foreground">Focus:</span> {edu.focus}
-                    </p>
-                  )}
-                  {edu.highlights && edu.highlights.length > 0 && (
-                    <ul className="space-y-2">
-                      {edu.highlights.map((item, i) => (
-                        <li
-                          key={i}
-                          className="text-muted-foreground flex items-start gap-2"
-                        >
-                          <Award className="h-4 w-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
+                {edu.focus && (
+                  <p className="text-sm text-muted-foreground">
+                    <span className="font-medium text-foreground">Focus:</span> {edu.focus}
+                  </p>
+                )}
               </div>
             </motion.div>
           ))}

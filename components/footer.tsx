@@ -1,104 +1,58 @@
 import Link from "next/link";
-import { Github, Linkedin, Mail, ExternalLink } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
-const socialLinks = [
-  {
-    name: "GitHub",
-    href: "https://github.com/shanmuganathansomashekar",
-    icon: Github,
-  },
-  {
-    name: "LinkedIn",
-    href: "https://linkedin.com/in/shanmuganathansomashekar",
-    icon: Linkedin,
-  },
-  {
-    name: "Email",
-    href: "mailto:shan.somashekar@gmail.com",
-    icon: Mail,
-  },
+const links = [
+  { label: "Work", href: "#value" },
+  { label: "Experience", href: "#experience" },
+  { label: "Contact", href: "#contact" },
+];
+
+const social = [
+  { name: "GitHub", href: "https://github.com/shanmuganathansomashekar", icon: Github },
+  { name: "LinkedIn", href: "https://linkedin.com/in/shanmuganathansomashekar", icon: Linkedin },
+  { name: "Email", href: "mailto:shan.somashekar@gmail.com", icon: Mail },
 ];
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
   return (
     <footer className="border-t border-border bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Shan Somashekar</h3>
-            <p className="text-sm text-muted-foreground">
-              Data Scientist & ML Engineer building intelligent systems that
-              drive real business impact.
-            </p>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl py-8">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-6 text-sm">
+            <span className="font-medium text-foreground">Shan Somashekar</span>
+            {links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className="text-muted-foreground hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+              >
+                {l.label}
+              </Link>
+            ))}
           </div>
-
-          <div>
-            <h4 className="text-sm font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link
-                  href="#about"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+          <div className="flex items-center gap-4">
+            {social.map((s) => {
+              const Icon = s.icon;
+              return (
+                <a
+                  key={s.name}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground transition-colors p-1"
+                  aria-label={s.name}
                 >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#projects"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#experience"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Experience
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#contact"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-sm font-semibold mb-4">Connect</h4>
-            <div className="flex gap-4">
-              {socialLinks.map((link) => {
-                const Icon = link.icon;
-                return (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 border border-border hover:bg-muted/30 transition-colors"
-                    aria-label={link.name}
-                  >
-                    <Icon className="h-5 w-5" />
-                  </a>
-                );
-              })}
-            </div>
+                  <Icon className="h-4 w-4" />
+                </a>
+              );
+            })}
           </div>
         </div>
-
-        <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          <p>
-            © {currentYear} Shanmuganathan Somashekar. All rights reserved.
-          </p>
-        </div>
+        <p className="mt-4 text-center sm:text-left text-xs text-muted-foreground">
+          © {year} Shanmuganathan Somashekar
+        </p>
       </div>
     </footer>
   );

@@ -15,13 +15,13 @@ export default function Home() {
     <>
       <HeroSection />
       <ValueSection />
-      <RolesSection />
       <ImpactDashboard />
-      <AboutSection />
-      <CaseStudiesSection />
-      <SkillsMatrix />
       <ExperienceTimeline />
+      <AboutSection />
+      <RolesSection />
+      <SkillsMatrix />
       <EducationSection />
+      <CaseStudiesSection />
       <ResearchSection />
       <ContactSection />
     </>

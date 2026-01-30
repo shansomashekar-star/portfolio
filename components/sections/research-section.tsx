@@ -1,126 +1,70 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, BookOpen, Lightbulb, Code } from "lucide-react";
+import { BookOpen, Lightbulb, Code } from "lucide-react";
 
 interface ResearchItem {
   title: string;
-  type: "blog" | "learning" | "experiment" | "note";
+  type: "blog" | "learning" | "experiment";
   description: string;
-  link?: string;
   date: string;
 }
 
-const researchItems: ResearchItem[] = [
-  {
-    title: "Zero-Shot Learning in Production",
-    type: "blog",
-    description:
-      "Lessons learned from deploying zero-shot NLP models at scale, including prompt engineering and performance optimization.",
-    date: "2024-01",
-  },
-  {
-    title: "Reinforcement Learning for Operations",
-    type: "experiment",
-    description:
-      "Exploring RL applications for alarm grouping and operational efficiency improvements.",
-    date: "2023-12",
-  },
-  {
-    title: "Building Scalable ML Pipelines",
-    type: "learning",
-    description:
-      "Best practices for designing and deploying ML pipelines that handle terabytes of data.",
-    date: "2023-11",
-  },
-  {
-    title: "Feature Engineering for Time-Series",
-    type: "note",
-    description:
-      "Key techniques and patterns for effective feature engineering in time-series anomaly detection.",
-    date: "2023-10",
-  },
-  {
-    title: "Model Interpretability in Production",
-    type: "blog",
-    description:
-      "Strategies for maintaining model interpretability while scaling ML systems.",
-    date: "2023-09",
-  },
-  {
-    title: "Cost Optimization in Cloud ML",
-    type: "learning",
-    description:
-      "Practical approaches to reducing cloud costs for ML workloads without sacrificing performance.",
-    date: "2023-08",
-  },
+const items: ResearchItem[] = [
+  { title: "Zero-Shot Learning in Production", type: "blog", description: "Deploying zero-shot NLP at scale: prompts and performance.", date: "2024-01" },
+  { title: "Reinforcement Learning for Operations", type: "experiment", description: "RL for alarm grouping and operational efficiency.", date: "2023-12" },
+  { title: "Building Scalable ML Pipelines", type: "learning", description: "Designing pipelines that handle terabytes of data.", date: "2023-11" },
+  { title: "Feature Engineering for Time-Series", type: "learning", description: "Techniques for time-series anomaly detection.", date: "2023-10" },
+  { title: "Model Interpretability in Production", type: "blog", description: "Keeping interpretability while scaling ML systems.", date: "2023-09" },
+  { title: "Cost Optimization in Cloud ML", type: "learning", description: "Reducing cloud costs for ML without sacrificing performance.", date: "2023-08" },
 ];
 
-const typeIcons = {
-  blog: BookOpen,
-  learning: Lightbulb,
-  experiment: Code,
-  note: BookOpen,
-};
-
-const typeColors = {
-  blog: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
-  learning: "bg-teal-500/10 text-teal-600 dark:text-teal-400",
-  experiment: "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400",
-  note: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+const typeConfig = {
+  blog: { icon: BookOpen, label: "Blog" },
+  learning: { icon: Lightbulb, label: "Learning" },
+  experiment: { icon: Code, label: "Experiment" },
 };
 
 export function ResearchSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="research" ref={ref} className="py-32 bg-gradient-to-br from-background via-emerald-50/20 dark:via-emerald-950/10 to-background border-t border-border">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+    <section id="research" ref={ref} className="py-24 sm:py-32 border-t border-border bg-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.4 }}
+          className="text-center mb-10"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-semibold mb-6 tracking-tight">
-            Research & Thought Leadership
+          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight mb-4">
+            Research & Learning
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Insights, experiments, and learnings from building ML systems
+          <p className="text-muted-foreground text-lg">
+            Insights from building ML systems
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {researchItems.map((item, index) => {
-            const Icon = typeIcons[item.type];
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {items.map((item, i) => {
+            const { icon: Icon, label } = typeConfig[item.type];
             return (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="border-b border-border pb-6 transition-all group"
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="border border-border rounded-lg p-5 bg-card/30 hover:bg-teal-50/40 dark:hover:bg-teal-950/20 hover:border-teal-200 dark:hover:border-teal-800 transition-colors"
               >
-                <div className="flex items-start justify-between mb-4">
-                  <div
-                    className={`px-3 py-1 rounded-full text-xs font-medium flex items-center gap-2 ${typeColors[item.type]}`}
-                  >
-                    <Icon className="h-3 w-3" />
-                    <span className="capitalize">{item.type}</span>
-                  </div>
-                  {item.link && (
-                    <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
-                  )}
+                <div className="flex items-center gap-2 mb-2">
+                  <Icon className="h-3.5 w-3.5 text-teal-600 dark:text-teal-400" />
+                  <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{label}</span>
+                  <span className="text-xs text-muted-foreground ml-auto">{item.date}</span>
                 </div>
-
-                <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  {item.description}
-                </p>
-                <p className="text-xs text-muted-foreground">{item.date}</p>
+                <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
               </motion.div>
             );
           })}
