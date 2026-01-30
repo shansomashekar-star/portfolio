@@ -57,7 +57,7 @@ export function AboutSection() {
             >
               My journey began in academic research, where I developed a deep
               understanding of machine learning fundamentals and statistical
-              methods. Transitioning to industry, I've focused on building
+              methods. Transitioning to industry, I&apos;ve focused on building
               scalable ML systems that solve real business problems.
             </motion.p>
 
@@ -69,7 +69,7 @@ export function AboutSection() {
             >
               From designing NLP feedback engines that process millions of
               interactions to building anomaly detection systems that save
-              thousands in operational costs, I've consistently delivered
+              thousands in operational costs, I&apos;ve consistently delivered
               solutions that combine technical excellence with business impact.
             </motion.p>
 

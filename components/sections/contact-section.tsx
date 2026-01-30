@@ -61,10 +61,10 @@ export function ContactSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-semibold mb-6 tracking-tight">
-            Let's Work Together
+            Let&apos;s Work Together
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind? Let's discuss how I can help bring your ideas to life.
+            Have a project in mind? Let&apos;s discuss how I can help bring your ideas to life.
           </p>
         </motion.div>
 
@@ -168,10 +168,10 @@ export function ContactSection() {
             <div className="bg-gradient-to-br from-teal-50/50 to-cyan-50/50 dark:from-teal-950/20 dark:to-cyan-950/20 border border-border rounded-2xl p-8">
               <h3 className="text-2xl font-semibold mb-6">Get in Touch</h3>
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                I'm always open to discussing new projects, creative ideas, or
-                opportunities to be part of your vision. Whether you're looking
+                I&apos;m always open to discussing new projects, creative ideas, or
+                opportunities to be part of your vision. Whether you&apos;re looking
                 for a data scientist, ML engineer, or someone to help scale your
-                data infrastructure, let's talk.
+                data infrastructure, let&apos;s talk.
               </p>
 
               <div className="space-y-4">
