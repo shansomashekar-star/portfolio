@@ -211,3 +211,4 @@ This is a personal portfolio, but suggestions and improvements are welcome!
 ---
 
 Built with ❤️ using Next.js and TypeScript
+# portfolio
