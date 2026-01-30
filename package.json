@@ -35,6 +35,7 @@
     "typescript": "^5.7.2"
   },
   "overrides": {
+    "eslint": "$eslint",
     "rimraf": "^6.0.1",
     "glob": "^11.0.1",
     "inflight": "lru-cache@^11.0.0",
