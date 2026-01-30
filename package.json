@@ -36,6 +36,9 @@
   },
   "overrides": {
     "rimraf": "^6.0.1",
-    "glob": "^11.0.1"
+    "glob": "^11.0.1",
+    "inflight": "lru-cache@^11.0.0",
+    "@humanwhocodes/config-array": "@eslint/config-array@^0.19.0",
+    "@humanwhocodes/object-schema": "@eslint/object-schema@^0.1.4"
   }
 }
