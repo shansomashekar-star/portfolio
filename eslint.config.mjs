@@ -3,10 +3,11 @@
  * See: https://eslint.org/docs/latest/use/configure/migration-guide
  */
 import { defineConfig, globalIgnores } from "eslint/config";
-import nextVitals from "eslint-config-next/core-web-vitals";
+import nextPlugin from "@next/eslint-plugin-next";
 
 const eslintConfig = defineConfig([
-  ...nextVitals,
+  nextPlugin.flatConfig.recommended,
+  nextPlugin.flatConfig.coreWebVitals,
   // Override default ignores of eslint-config-next
   globalIgnores([
     ".next/**",
