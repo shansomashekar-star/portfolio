@@ -6,8 +6,8 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import nextPlugin from "@next/eslint-plugin-next";
 
 const eslintConfig = defineConfig([
-  nextPlugin.flatConfig.recommended,
-  nextPlugin.flatConfig.coreWebVitals,
+  nextPlugin.configs.recommended,
+  nextPlugin.configs["core-web-vitals"],
   // Override default ignores of eslint-config-next
   globalIgnores([
     ".next/**",
